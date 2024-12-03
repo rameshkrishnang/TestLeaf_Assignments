@@ -1,0 +1,11 @@
+F:\Workspace\Assignments\core-interfaces\src\main\java\com\testleaf\constants\BrowserTestEngine.java
+F:\Workspace\Assignments\core-interfaces\src\main\java\com\testleaf\constants\BrowserType.java
+F:\Workspace\Assignments\core-interfaces\src\main\java\com\testleaf\constants\LocatorType.java
+F:\Workspace\Assignments\core-interfaces\src\main\java\com\testleaf\web\api\APIClient.java
+F:\Workspace\Assignments\core-interfaces\src\main\java\com\testleaf\web\api\ResponseAPI.java
+F:\Workspace\Assignments\core-interfaces\src\main\java\com\testleaf\web\browser\Browser.java
+F:\Workspace\Assignments\core-interfaces\src\main\java\com\testleaf\web\browser\BrowserFactory.java
+F:\Workspace\Assignments\core-interfaces\src\main\java\com\testleaf\web\element\Button.java
+F:\Workspace\Assignments\core-interfaces\src\main\java\com\testleaf\web\element\Edit.java
+F:\Workspace\Assignments\core-interfaces\src\main\java\com\testleaf\web\element\Element.java
+F:\Workspace\Assignments\core-interfaces\src\main\java\com\testleaf\web\element\Link.java

@@ -1,0 +1,3 @@
+com\testleaf\tests\TestSalesforce.class
+com\testleaf\tests\TestBrowserEngines.class
+com\testleaf\tests\TestFactoryPool.class

@@ -1,0 +1,42 @@
+package org.testleaf.designpattern.objectpool.pageobject.utility;
+
+import org.apache.poi.xssf.usermodel.XSSFCell;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
+import java.io.IOException;
+
+public class ReadExcel {
+
+	public static String[][] readExcel(String bookName) throws IOException {
+
+		// Set the path
+		XSSFWorkbook wbook = new XSSFWorkbook("./src/main/resources/data/"+bookName+".xlsx");
+		// Open the sheet
+		XSSFSheet sheet = wbook.getSheetAt(0);// read the first sheet
+		// Row count
+		int rowCount = sheet.getLastRowNum(); // ctrl+2+l
+		// column count
+		short columnCount = sheet.getRow(0).getLastCellNum(); // ctrl+2+l
+		// data[][]
+		String[][] data = new String[rowCount][columnCount];
+
+		// get row value outer loop
+		for (int i = 1; i <= rowCount; i++) {
+			XSSFRow row = sheet.getRow(i);// ctrl+2+l
+			// column count inner loop
+			for (int j = 0; j < columnCount; j++) {
+				XSSFCell cell = row.getCell(j);// 1 0
+				// System.out.println(cell.getStringCellValue());
+				data[i - 1][j] = cell.getStringCellValue();
+			}
+
+		}
+
+		wbook.close();
+		return data;
+	}
+	// to close the workbook
+
+}
