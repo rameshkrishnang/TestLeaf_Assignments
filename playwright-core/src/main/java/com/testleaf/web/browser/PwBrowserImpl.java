@@ -61,6 +61,15 @@ public class PwBrowserImpl implements Browser, APIClient{
         }
     }
 
+    @Override
+    public void quitBrowser() {
+        closeBrowser();
+        if (playwright != null) {
+            playwright.close();
+            playwright = null;
+        }
+    }
+
     private String buildSelector(LocatorType locatorType, String locator) {
         switch (locatorType) {
             case ID:

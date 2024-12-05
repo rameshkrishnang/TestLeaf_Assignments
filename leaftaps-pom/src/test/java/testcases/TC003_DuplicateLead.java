@@ -15,7 +15,6 @@ public class TC003_DuplicateLead extends BasePage {
 
 	@Test(dataProvider = "fetchData")
 	public void runDuplicateLead(String ph) throws InterruptedException {
-		
 		String firstLead = new LeadsPage()
 			.clickFindLeadsLink()
 			.clickPhoneTab()

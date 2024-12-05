@@ -14,7 +14,6 @@ public class TC001_CreateLead extends BasePage {
 
     @Test(dataProvider = "fetchData")
     public void runCreateLead(String cName, String fName, String lName, String ph) {
-        
     		new LeadsPage()
             .clickCreateLeadLink()
             .enterCompanyName(cName)

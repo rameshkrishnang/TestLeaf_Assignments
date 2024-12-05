@@ -14,7 +14,6 @@ import java.util.logging.Logger;
 public class WebDriverPoolCapabilitiesFactory {
 
     private static final Logger logger = Logger.getLogger(WebDriverPoolCapabilitiesFactory.class.getName());
-
     private final WebDriverFactory driverFactory;
     private final ConcurrentMap<BrowserCapabilitiesKey, BlockingQueue<WebDriver>> driverPool;
     private final ConcurrentMap<WebDriver, BrowserCapabilitiesKey> driverToBrowserCapabilitiesKey;
@@ -27,9 +26,7 @@ public class WebDriverPoolCapabilitiesFactory {
 
     public WebDriver getDriver(BrowserType browserType, Capabilities capabilities) {
         BrowserCapabilitiesKey key = new BrowserCapabilitiesKey(browserType, capabilities);
-
         BlockingQueue<WebDriver> queue = driverPool.computeIfAbsent(key, k -> new LinkedBlockingQueue<>());
-
         WebDriver driver = queue.poll();
 
         if (driver == null) {

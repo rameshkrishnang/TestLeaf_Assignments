@@ -23,21 +23,11 @@ public class BrowserCapabilitiesKey {
 
         switch (browserType) {
             case CHROME:
-                serializeBrowserOptions(
-                    capabilities,
-                    "goog:chromeOptions",
-                    json,
-                    gson
-                );
+                serializeBrowserOptions(capabilities, "goog:chromeOptions", json, gson);
                 break;
 
             case FIREFOX:
-                serializeBrowserOptions(
-                    capabilities,
-                    "moz:firefoxOptions",
-                    json,
-                    gson
-                );
+                serializeBrowserOptions(capabilities, "moz:firefoxOptions", json, gson);
                 break;
 
             default:
@@ -49,12 +39,7 @@ public class BrowserCapabilitiesKey {
     }
 
     @SuppressWarnings("unchecked")
-    private void serializeBrowserOptions(
-        Capabilities capabilities,
-        String optionsKey,
-        JsonObject mainJson,
-        Gson gson
-    ) {
+    private void serializeBrowserOptions(Capabilities capabilities, String optionsKey, JsonObject mainJson, Gson gson) {
         Map<String, Object> browserOptionsMap = (Map<String, Object>) capabilities.getCapability(optionsKey);
         if (browserOptionsMap != null) {
             JsonObject browserJson = new JsonObject();
@@ -71,11 +56,7 @@ public class BrowserCapabilitiesKey {
         }
     }
 
-    private void serializeGeneralCapabilities(
-        Capabilities capabilities,
-        JsonObject mainJson,
-        Gson gson
-    ) {
+    private void serializeGeneralCapabilities(Capabilities capabilities, JsonObject mainJson, Gson gson) {
         Map<String, Object> capsMap = new TreeMap<>(capabilities.asMap());
         capsMap.remove("goog:chromeOptions");
         capsMap.remove("moz:firefoxOptions");
@@ -125,9 +106,6 @@ public class BrowserCapabilitiesKey {
 
     @Override
     public String toString() {
-        return "BrowserCapabilitiesKey{" +
-                "browserType=" + browserType +
-                ", capabilitiesKey='" + capabilitiesKey + '\'' +
-                '}';
+        return "BrowserCapabilitiesKey{" + "browserType=" + browserType + ", capabilitiesKey='" + capabilitiesKey + '\'' + '}';
     }
 }

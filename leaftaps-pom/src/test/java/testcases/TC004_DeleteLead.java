@@ -14,7 +14,6 @@ public class TC004_DeleteLead extends BasePage {
 
 	@Test(dataProvider = "fetchData")
 	public void runDeleteLead(String ph) throws InterruptedException {
-		
 		String firstLead = 
 				new LeadsPage()
 				.clickFindLeadsLink()
@@ -33,6 +32,5 @@ public class TC004_DeleteLead extends BasePage {
 				.enterLeadID(firstLead)
 				.clickFindLeadButton()
 				.verifyDeletedLeadID();
-
 	}
 }

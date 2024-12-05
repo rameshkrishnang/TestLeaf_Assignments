@@ -1,7 +1,8 @@
 package com.testleaf.web.element.decorated;
 
-import java.util.logging.Logger;
 import com.testleaf.web.element.Button;
+
+import java.util.logging.Logger;
 
 public class SeButtonLogDecorator implements Button {
 
@@ -34,9 +35,9 @@ public class SeButtonLogDecorator implements Button {
         return button.getAttribute(attribute);
     }
 
-	@Override
-	public String getText() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+    @Override
+    public String getText() {
+        // TODO Auto-generated method stub
+        return null;
+    }
 }

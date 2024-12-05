@@ -14,7 +14,6 @@ public class TC002_EditLead extends BasePage {
 
 	@Test(dataProvider = "fetchData")
 	public void runEditLead(String ph,String updatedName) throws InterruptedException {
-
 		new LeadsPage()
 		.clickFindLeadsLink()
 		.clickPhoneTab()

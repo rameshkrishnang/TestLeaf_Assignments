@@ -1,33 +1,35 @@
 package com.testleaf.web.api;
 
-import java.util.Map;
-
 import com.microsoft.playwright.APIResponse;
 
-public class PwResponseImpl implements ResponseAPI{
-	private APIResponse response;
-	public PwResponseImpl(APIResponse response) {
-		this.response = response;
-	}
+import java.util.Map;
 
-	@Override
-	public int getStatusCode() {
-		return response.status();
-	}
+public class PwResponseImpl implements ResponseAPI {
 
-	@Override
-	public String getStatusMessage() {
-		return response.statusText();
-	}
+	private final APIResponse response;
 
-	@Override
-	public String getBody() {
-		return response.text();
-	}
+    public PwResponseImpl(APIResponse response) {
+        this.response = response;
+    }
 
-	@Override
-	public Map<String, String> getHeaders() {
-		return response.headers();
-	}
+    @Override
+    public int getStatusCode() {
+        return response.status();
+    }
+
+    @Override
+    public String getStatusMessage() {
+        return response.statusText();
+    }
+
+    @Override
+    public String getBody() {
+        return response.text();
+    }
+
+    @Override
+    public Map<String, String> getHeaders() {
+        return response.headers();
+    }
 
 }

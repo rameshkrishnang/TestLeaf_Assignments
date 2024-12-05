@@ -1,91 +1,81 @@
 package com.testleaf.web.browser;
 
-import java.time.Duration;
-
+import com.testleaf.constants.LocatorType;
+import com.testleaf.web.element.*;
+import com.testleaf.web.element.decorated.SeButtonLogDecorator;
+import com.testleaf.web.element.decorated.SeButtonSnapDecorator;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import com.testleaf.constants.LocatorType;
-import com.testleaf.web.element.SeButtonImpl;
-import com.testleaf.web.element.SeEditImpl;
-import com.testleaf.web.element.Button;
-import com.testleaf.web.element.Edit;
-import com.testleaf.web.element.Element;
-import com.testleaf.web.element.SeElementImpl;
-import com.testleaf.web.element.SeLinkImpl;
-import com.testleaf.web.element.decorated.SeButtonLogDecorator;
-import com.testleaf.web.element.decorated.SeButtonSnapDecorator;
-import com.testleaf.web.element.Link;
+
+import java.time.Duration;
 
 public class SeBrowserImpl implements Browser {
 
-	protected WebDriver driver;
+    protected WebDriver driver;
 
-	public SeBrowserImpl(WebDriver driver) {
-		this.driver = driver;
-		//this.driver = new ChromeDriver();
-	}
+    public SeBrowserImpl(WebDriver driver) {
+        this.driver = driver;
+    }
 
-	@Override
-	public void navigateTo(String url) {
-		this.driver.get(url);
-		this.driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
-	}
+    @Override
+    public void navigateTo(String url) {
+        this.driver.get(url);
+        this.driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
+    }
 
-	@Override
-	public void maximize() {
-		this.driver.manage().window().maximize();
-	}
+    @Override
+    public void maximize() {
+        this.driver.manage().window().maximize();
+    }
 
-	@Override
-	public void closeBrowser() {
-		this.driver.close();
-	}
+    @Override
+    public void closeBrowser() {
+        this.driver.close();
+    }
+
+    @Override
+    public void quitBrowser() {
+        this.driver.quit();
+    }
 
 	private WebElement findElement(LocatorType locatorType, String locator) {
-		switch (locatorType) {
-		case ID:
-			return this.driver.findElement(By.id(locator));
-		case NAME:
-			return this.driver.findElement(By.name(locator));
-		case CLASS:
-			return this.driver.findElement(By.className(locator));
-		case LINK_TEXT:
-			return this.driver.findElement(By.linkText(locator));
-		case XPATH:
-			return this.driver.findElement(By.xpath(locator));
-		default:
-			throw new IllegalArgumentException("Unsupported Locator Type :" + locatorType);
-		}
+		return switch (locatorType) {
+			case ID -> this.driver.findElement(By.id(locator));
+			case NAME -> this.driver.findElement(By.name(locator));
+			case CLASS -> this.driver.findElement(By.className(locator));
+			case LINK_TEXT -> this.driver.findElement(By.linkText(locator));
+			case XPATH -> this.driver.findElement(By.xpath(locator));
+			default -> throw new IllegalArgumentException("Unsupported Locator Type :" + locatorType);
+		};
 	}
 
-	@Override
-	public Element locateElement(LocatorType locatorType, String element) {
-		return new SeElementImpl(findElement(locatorType, element));
-	}
+    @Override
+    public Element locateElement(LocatorType locatorType, String element) {
+        return new SeElementImpl(findElement(locatorType, element));
+    }
 
-	@Override
-	public Edit locateEdit(LocatorType locatorType, String element) {
-		return new SeEditImpl(findElement(locatorType, element));
-	}
+    @Override
+    public Edit locateEdit(LocatorType locatorType, String element) {
+        return new SeEditImpl(findElement(locatorType, element));
+    }
 
-	@Override
-	public Button locateButton(LocatorType locatorType, String element) {
-		//new SeButtonImpl(findElement(locatorType, Element));
-		Button button = new SeButtonImpl(findElement(locatorType, element));
-	    //return new SeButtonLogDecorator(button);
-		return new SeButtonSnapDecorator(new SeButtonLogDecorator(button));
-	}
+    @Override
+    public Button locateButton(LocatorType locatorType, String element) {
+        //new SeButtonImpl(findElement(locatorType, Element));
+        Button button = new SeButtonImpl(findElement(locatorType, element));
+        //return new SeButtonLogDecorator(button);
+        return new SeButtonSnapDecorator(new SeButtonLogDecorator(button));
+    }
 
-	@Override
-	public Link locateLink(LocatorType locatorType, String element) {
-		return new SeLinkImpl(findElement(locatorType, element));
+    @Override
+    public Link locateLink(LocatorType locatorType, String element) {
+        return new SeLinkImpl(findElement(locatorType, element));
+    }
 
-	}
-
-	@Override
-	public String getTitle() {
-		return driver.getTitle();
-	}
+    @Override
+    public String getTitle() {
+        return driver.getTitle();
+    }
 
 }

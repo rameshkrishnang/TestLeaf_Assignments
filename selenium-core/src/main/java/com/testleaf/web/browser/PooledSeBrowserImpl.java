@@ -6,17 +6,17 @@ import org.openqa.selenium.WebDriver;
 
 public class PooledSeBrowserImpl extends SeBrowserImpl {
 
-	private WebDriverPoolCapabilitiesFactory poolFactory;
+    private final WebDriverPoolCapabilitiesFactory poolFactory;
 
-	public PooledSeBrowserImpl(WebDriver driver, WebDriverPoolCapabilitiesFactory poolFactory, BrowserType browserType,
-			Capabilities capabilities) {
-		super(driver);
-		this.poolFactory = poolFactory;
-	}
+    public PooledSeBrowserImpl(WebDriver driver, WebDriverPoolCapabilitiesFactory poolFactory, BrowserType browserType, Capabilities capabilities) {
+        super(driver);
+        this.poolFactory = poolFactory;
+    }
 
-	@Override
-	public void closeBrowser() {
-		//driver.manage().deleteAllCookies();
-		poolFactory.releaseDriver(driver);
-	}
+    @Override
+    public void closeBrowser() {
+        driver.manage().deleteAllCookies();
+        poolFactory.releaseDriver(driver);
+    }
+
 }

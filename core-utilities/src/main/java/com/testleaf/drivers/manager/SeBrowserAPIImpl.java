@@ -15,8 +15,8 @@ import com.testleaf.web.element.Link;
 
 public class SeBrowserAPIImpl implements Browser, APIClient {
 
-    private Browser browser;
-    private RAAPIClientImpl apiClient;
+    private final Browser browser;
+    private final RAAPIClientImpl apiClient;
 
     public SeBrowserAPIImpl(BrowserType browserType) {
         BrowserFactory seFactory = new SeBrowserFactory();
@@ -37,6 +37,11 @@ public class SeBrowserAPIImpl implements Browser, APIClient {
     @Override
     public void closeBrowser() {
         browser.closeBrowser();
+    }
+
+    @Override
+    public void quitBrowser() {
+        browser.quitBrowser();
     }
 
     @Override
@@ -67,21 +72,21 @@ public class SeBrowserAPIImpl implements Browser, APIClient {
     // API-specific methods
     @Override
     public ResponseAPI get(String endpoint, String token) {
-        return apiClient.get(endpoint,token);
+        return apiClient.get(endpoint, token);
     }
 
     @Override
     public ResponseAPI post(String endpoint, String token, Object body) {
-        return apiClient.post(endpoint,token,body);
+        return apiClient.post(endpoint, token, body);
     }
 
     @Override
     public ResponseAPI put(String endpoint, String token, Object body) {
-        return apiClient.put(endpoint,token,body);
+        return apiClient.put(endpoint, token, body);
     }
 
     @Override
     public ResponseAPI delete(String endpoint, String token) {
-        return apiClient.delete(endpoint,token);
+        return apiClient.delete(endpoint, token);
     }
 }

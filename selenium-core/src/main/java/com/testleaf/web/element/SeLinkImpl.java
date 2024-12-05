@@ -4,7 +4,6 @@ import org.openqa.selenium.WebElement;
 
 public class SeLinkImpl extends SeElementImpl implements Link{
 
-
 	public SeLinkImpl(WebElement element) {
 		super(element);
 	}
@@ -19,6 +18,4 @@ public class SeLinkImpl extends SeElementImpl implements Link{
 		element.click();
 	}
 
-
-	
 }

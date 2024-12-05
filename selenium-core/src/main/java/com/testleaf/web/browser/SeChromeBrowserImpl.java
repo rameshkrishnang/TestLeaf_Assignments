@@ -5,7 +5,8 @@ import org.openqa.selenium.chrome.ChromeOptions;
 
 public class SeChromeBrowserImpl extends SeBrowserImpl {
 
-	public SeChromeBrowserImpl() {
-		super(new ChromeDriver(new ChromeOptions().addArguments("--disable-notifications")));
+    public SeChromeBrowserImpl() {
+        super(new ChromeDriver(new ChromeOptions().addArguments("--disable-notifications")));
     }
+
 }

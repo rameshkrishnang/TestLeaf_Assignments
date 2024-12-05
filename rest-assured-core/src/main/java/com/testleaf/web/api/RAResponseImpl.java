@@ -7,7 +7,7 @@ import io.restassured.response.Response;
 
 public class RAResponseImpl implements ResponseAPI{
 	
-	private Response response;
+	private final Response response;
 	public RAResponseImpl(Response response) {
 		this.response = response;
 	}

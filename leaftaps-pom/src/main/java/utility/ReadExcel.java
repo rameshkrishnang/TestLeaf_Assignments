@@ -10,7 +10,6 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 public class ReadExcel {
 
 	public static String[][] readExcel(String bookName) throws IOException {
-
 		// Set the path
 		XSSFWorkbook wbook = new XSSFWorkbook("./data/"+bookName+".xlsx");
 		// Open the sheet
@@ -33,7 +32,6 @@ public class ReadExcel {
 			}
 
 		}
-
 		wbook.close();
 		return data;
 	}
