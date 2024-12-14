@@ -10,16 +10,11 @@ import com.testleaf.constants.LocatorType;
 import com.testleaf.web.api.APIClient;
 import com.testleaf.web.api.PwResponseImpl;
 import com.testleaf.web.api.ResponseAPI;
-import com.testleaf.web.element.Button;
-import com.testleaf.web.element.Edit;
-import com.testleaf.web.element.Element;
-import com.testleaf.web.element.Link;
-import com.testleaf.web.element.PwButtonImpl;
-import com.testleaf.web.element.PwEditImpl;
-import com.testleaf.web.element.PwElementImpl;
-import com.testleaf.web.element.PwLinkImpl;
+import com.testleaf.web.element.*;
 
-public class PwBrowserImpl implements Browser, APIClient{
+import java.util.Set;
+
+public class PwBrowserImpl implements Browser, APIClient {
 
     private Playwright playwright;
     private com.microsoft.playwright.Browser pwBrowser;
@@ -40,7 +35,7 @@ public class PwBrowserImpl implements Browser, APIClient{
         }
         context = pwBrowser.newContext();
         page = context.newPage();
-      
+
     }
 
     @Override
@@ -68,6 +63,11 @@ public class PwBrowserImpl implements Browser, APIClient{
             playwright.close();
             playwright = null;
         }
+    }
+
+    @Override
+    public void clickOkOnAlert() {
+
     }
 
     private String buildSelector(LocatorType locatorType, String locator) {
@@ -108,6 +108,21 @@ public class PwBrowserImpl implements Browser, APIClient{
     }
 
     @Override
+    public void addCookies(Set<BrowserCookie> cookies) {
+
+    }
+
+    @Override
+    public Set<BrowserCookie> getCookies() {
+        return Set.of();
+    }
+
+    @Override
+    public void clearAllCookies() {
+
+    }
+
+    @Override
     public void maximize() {
         page.setViewportSize(1920, 1080);
     }
@@ -116,43 +131,28 @@ public class PwBrowserImpl implements Browser, APIClient{
     public String getTitle() {
         return page.title();
     }
-    
+
     @Override
     public ResponseAPI get(String endPoint, String token) {
-        APIResponse apiResponse = page.request().get(endPoint, RequestOptions
-				.create()
-				.setHeader("Authorization", "Bearer "+token)
-				.setHeader("content-type", "application/json"));
+        APIResponse apiResponse = page.request().get(endPoint, RequestOptions.create().setHeader("Authorization", "Bearer " + token).setHeader("content-type", "application/json"));
         return new PwResponseImpl(apiResponse);
     }
-    
+
     @Override
     public ResponseAPI post(String endPoint, String token, Object body) {
-        APIResponse apiResponse = page.request()
-        		.post(endPoint, RequestOptions
-        				.create()
-        				.setHeader("Authorization", "Bearer "+token)
-        				.setHeader("content-type", "application/json")
-        				.setData(body));
+        APIResponse apiResponse = page.request().post(endPoint, RequestOptions.create().setHeader("Authorization", "Bearer " + token).setHeader("content-type", "application/json").setData(body));
         return new PwResponseImpl(apiResponse);
     }
 
     @Override
     public ResponseAPI put(String endPoint, String token, Object body) {
-        APIResponse apiResponse = page.request().put(endPoint, RequestOptions
-				.create()
-				.setHeader("Authorization", "Bearer "+token)
-				.setHeader("content-type", "application/json")
-				.setData(body));
+        APIResponse apiResponse = page.request().put(endPoint, RequestOptions.create().setHeader("Authorization", "Bearer " + token).setHeader("content-type", "application/json").setData(body));
         return new PwResponseImpl(apiResponse);
     }
 
     @Override
     public ResponseAPI delete(String endPoint, String token) {
-        APIResponse apiResponse = page.request().delete(endPoint, RequestOptions
-				.create()
-				.setHeader("Authorization", "Bearer "+token)
-				.setHeader("content-type", "application/json"));
+        APIResponse apiResponse = page.request().delete(endPoint, RequestOptions.create().setHeader("Authorization", "Bearer " + token).setHeader("content-type", "application/json"));
         return new PwResponseImpl(apiResponse);
     }
 

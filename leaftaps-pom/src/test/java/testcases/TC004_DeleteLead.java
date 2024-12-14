@@ -1,36 +1,34 @@
 package testcases;
 
-import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
+
+import data.RedisDataEngine;
 import pages.BasePage;
-import pages.FindLeadPage;
 import pages.LeadsPage;
 
 public class TC004_DeleteLead extends BasePage {
-	@BeforeTest
-	public void setData() {
-		dataSheetName = "DeleteLead";
-	}
+	
 
-	@Test(dataProvider = "fetchData")
-	public void runDeleteLead(String ph) throws InterruptedException {
-		String firstLead = 
-				new LeadsPage()
-				.clickFindLeadsLink()
-				.clickPhoneTab()
-				.enterPhoneNumber(ph)
-				.clickFindLeadButton()
-				.clickPhoneTab()
-				.enterPhoneNumber(ph)
-				.clickFindLeadButton()
-				.getFirstLead();
+	@Test()
+	public void runDeleteLead() throws InterruptedException {
 		
-				new FindLeadPage()
-				.clickDeleteFirstLead()
+		// Delete from redis
+		RedisDataEngine.deleteLeadRedis(leadInfo.getLeadId());
+		
+		new LeadsPage()
+				.clickFindLeadsLink()
+				.enterLeadID(leadInfo.getLeadId())
+				.clickFindLeadButton()
+				.clickFirstLead()
+				.clickDeleteButton()
 				.clickFindLeadsLink()
 				.clickLeadIDTab()
-				.enterLeadID(firstLead)
+				.enterLeadID(leadInfo.getLeadId())
 				.clickFindLeadButton()
 				.verifyDeletedLeadID();
+		
+		// if test case fails >> save it back
+		
+		
 	}
 }

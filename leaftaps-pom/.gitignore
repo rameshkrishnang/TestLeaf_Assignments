@@ -1,0 +1,14 @@
+# Ignore Maven target folder
+target/
+
+# Ignore Gradle build folder
+build/
+
+# Ignore IntelliJ IDEA project files
+.idea/
+
+# Ignore compiled Java files
+*.class
+
+# Ignore test-output directory
+test-output/

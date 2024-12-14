@@ -1,45 +1,54 @@
+# Ignore Maven or Gradle build artifacts
 target/
-!.mvn/wrapper/maven-wrapper.jar
-!**/src/main/**/target/
-!**/src/test/**/target/
-
-### IntelliJ IDEA ###
-.idea/modules.xml
-.idea/jarRepositories.xml
-.idea/compiler.xml
-.idea/libraries/
-*.iws
-*.iml
-*.ipr
-
-### Eclipse ###
-.apt_generated
-.classpath
-.factorypath
-.project
-.settings
-.springBeans
-.sts4-cache
-
-### NetBeans ###
-/nbproject/private/
-/nbbuild/
-/dist/
-/nbdist/
-/.nb-gradle/
 build/
-!**/src/main/**/build/
-!**/src/test/**/build/
 
-### VS Code ###
+# Ignore IntelliJ IDEA project files
+.idea/
+
+# Ignore Eclipse project files
+.project
+.classpath
+.settings/
+
+# Ignore operating system files
+.DS_Store
+Thumbs.db
+
+# Ignore log files
+*.log
+
+# Ignore temporary files
+*.swp
+*.bak
+
+# Ignore node_modules if using front-end in a multi-module project
+node_modules/
+
+# Ignore Docker-related files
+.docker/
+
+# Ignore IDE-specific files
 .vscode/
 
-### Mac OS ###
-.DS_Store
-.idea/modules.xml
-.idea/TestLeaf_Assignments.iml
-.idea/vcs.xml
-*.xml
-*.xml
-*.iml
+# Ignore any compiled Java files (for example, in a submodule)
+*.class
+
+# Ignore test-output directory
+test-output/
+leaftaps-pom/test-output/testng.css
+leaftaps-pom/test-output/testng-reports2.js
+leaftaps-pom/test-output/testng-reports1.css
+leaftaps-pom/test-output/testng-reports.js
+leaftaps-pom/test-output/testng-reports.css
+leaftaps-pom/test-output/skipped.png
+leaftaps-pom/test-output/passed.png
+leaftaps-pom/test-output/old/index.html
+leaftaps-pom/test-output/testng.css
+leaftaps-pom/test-output/testng-reports2.js
+leaftaps-pom/test-output/testng-reports1.css
+leaftaps-pom/test-output/testng-reports.js
+leaftaps-pom/test-output/testng-reports.css
+leaftaps-pom/test-output/skipped.png
+leaftaps-pom/test-output/passed.png
+leaftaps-pom/test-output/old/index.html
 /.idea

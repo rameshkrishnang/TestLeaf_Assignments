@@ -23,8 +23,8 @@ public class PwEditImpl extends PwElementImpl implements Edit {
         locator.fill("");
     }
 
-	@Override
-	public void pressEnter() {
-		locator.press("Enter");
-	}
+    @Override
+    public void pressEnter() {
+        locator.press("Enter");
+    }
 }

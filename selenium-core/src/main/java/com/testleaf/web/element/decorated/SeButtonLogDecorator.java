@@ -38,6 +38,6 @@ public class SeButtonLogDecorator implements Button {
     @Override
     public String getText() {
         // TODO Auto-generated method stub
-        return null;
+        return button.getText();
     }
 }

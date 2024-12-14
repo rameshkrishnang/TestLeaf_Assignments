@@ -7,12 +7,12 @@ import base.ProjectHooks;
 public class HomePage extends ProjectHooks {
 
 	public LeadsPage clickLeadsTab() {
-		browser.locateLink(LocatorType.XPATH, "//a[contains(text(),'Leads')]").click();
+		getBrowser().locateLink(LocatorType.XPATH, "//a[contains(text(),'Leads')]").click();
 		return new LeadsPage(); 
 	}
 	
 	public WelcomePage clickOpentaps() {
-		browser.locateLink(LocatorType.LINK_TEXT, "opentaps").click();
+    	getBrowser().locateLink(LocatorType.LINK_TEXT, "opentaps").click();
         return new WelcomePage();
     }
 	

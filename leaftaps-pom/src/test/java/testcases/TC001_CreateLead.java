@@ -1,25 +1,31 @@
 package testcases;
 
-import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
+
+import data.RedisDataEngine;
 import pages.BasePage;
 import pages.LeadsPage;
 
 public class TC001_CreateLead extends BasePage {
 
-    @BeforeTest
-    public void setData() {
-        dataSheetName = "CreateLead";
-    }
-
-    @Test(dataProvider = "fetchData")
-    public void runCreateLead(String cName, String fName, String lName, String ph) {
-    		new LeadsPage()
+   
+    @Test(invocationCount = 3)
+    public void runCreateLead() {
+        
+    		String leadId = new LeadsPage()
             .clickCreateLeadLink()
-            .enterCompanyName(cName)
-            .enterFirstName(fName)
-            .enterLastName(lName)
-            .enterPhno(ph)
-            .clickSubmit();
+            .enterCompanyName(leadInfo.getCompanyName())
+            .enterFirstName(leadInfo.getFirstName())
+            .enterLastName(leadInfo.getLastName())
+            .enterPhno(leadInfo.getPhoneNumber())
+            .clickSubmit()
+            .getLeadId();
+    		
+    		// Set the leadId
+    		leadInfo.setLeadId(leadId);
+    		
+    		// Store in Redis
+    		RedisDataEngine.saveLeadRedis(leadInfo);
+    		
     }
 }

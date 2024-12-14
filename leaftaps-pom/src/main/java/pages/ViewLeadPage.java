@@ -5,7 +5,7 @@ import com.testleaf.constants.LocatorType;
 public class ViewLeadPage extends BasePage {
 
     public ViewLeadPage verifyLead(String expectedLeadId) {
-        String actualName = browser.locateElement(LocatorType.ID, "viewLead_companyName_sp").getText();
+        String actualName = getBrowser().locateElement(LocatorType.ID, "viewLead_companyName_sp").getText();
 
         if (actualName.contains(expectedLeadId)) {
             System.out.println("Lead ID Verified: " + actualName);
@@ -16,7 +16,7 @@ public class ViewLeadPage extends BasePage {
     }
 
     public ViewLeadPage verifyCompanyName(String expectedCompanyName) {
-        String actualCompanyName = browser.locateElement(LocatorType.ID, "viewLead_companyName_sp").getText();
+        String actualCompanyName = getBrowser().locateElement(LocatorType.ID, "viewLead_companyName_sp").getText();
 
         if (actualCompanyName.contains(expectedCompanyName)) {
             System.out.println("Company Name Verified: " + actualCompanyName);
@@ -25,19 +25,28 @@ public class ViewLeadPage extends BasePage {
         }
         return this;
     }
+    
+    public String getLeadId() {
+    	String companyName = getBrowser().locateButton(LocatorType.ID, "viewLead_companyName_sp").getText();
+    	String leadId = companyName.replaceAll("[^0-9]", "");
+    	System.out.println(leadId);
+    	return leadId;
+    	
+    }
+    
 
     public EditLeadPage clickEditButton() {
-    	browser.locateLink(LocatorType.LINK_TEXT, "Edit").click();
+        getBrowser().locateLink(LocatorType.LINK_TEXT, "Edit").click();
         return new EditLeadPage();
     }
 
     public DuplicateLeadPage clickDuplicateButton() {
-    	browser.locateLink(LocatorType.LINK_TEXT, "Duplicate Lead").click();
+        getBrowser().locateLink(LocatorType.LINK_TEXT, "Duplicate Lead").click();
         return new DuplicateLeadPage();
     }
 
     public LeadsPage clickDeleteButton() {
-    	browser.locateLink(LocatorType.LINK_TEXT, "Delete").click();
+        getBrowser().locateLink(LocatorType.LINK_TEXT, "Delete").click();
         return new LeadsPage();
     }
 }

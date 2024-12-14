@@ -5,10 +5,13 @@ import com.testleaf.web.element.*;
 import com.testleaf.web.element.decorated.SeButtonLogDecorator;
 import com.testleaf.web.element.decorated.SeButtonSnapDecorator;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Cookie;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import java.time.Duration;
+import java.util.HashSet;
+import java.util.Set;
 
 public class SeBrowserImpl implements Browser {
 
@@ -39,7 +42,12 @@ public class SeBrowserImpl implements Browser {
         this.driver.quit();
     }
 
-	private WebElement findElement(LocatorType locatorType, String locator) {
+    @Override
+    public void clickOkOnAlert() {
+        this.driver.switchTo().alert().accept();
+    }
+
+    private WebElement findElement(LocatorType locatorType, String locator) {
 		return switch (locatorType) {
 			case ID -> this.driver.findElement(By.id(locator));
 			case NAME -> this.driver.findElement(By.name(locator));
@@ -78,4 +86,28 @@ public class SeBrowserImpl implements Browser {
         return driver.getTitle();
     }
 
+    @Override
+    public void addCookies(Set<BrowserCookie> cookies) {
+        for (BrowserCookie browserCookie : cookies) {
+            SeBrowserCookieImpl seBrowserCookieImpl = (SeBrowserCookieImpl) browserCookie;
+            driver.manage().addCookie(seBrowserCookieImpl.getSeleniumCookie());
+        }
+    }
+
+    @Override
+    public Set<BrowserCookie> getCookies() {
+        Set<Cookie> seleniumCookies = driver.manage().getCookies();
+        Set<BrowserCookie> browserCookies = new HashSet<>();
+
+        for (Cookie seleniumCookie : seleniumCookies) {
+            browserCookies.add(new SeBrowserCookieImpl(seleniumCookie));
+        }
+
+        return browserCookies;
+    }
+
+    @Override
+    public void clearAllCookies() {
+        driver.manage().deleteAllCookies();  // Clear all cookies in Selenium
+    }
 }

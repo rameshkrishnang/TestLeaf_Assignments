@@ -6,6 +6,8 @@ import com.testleaf.web.element.Edit;
 import com.testleaf.web.element.Element;
 import com.testleaf.web.element.Link;
 
+import java.util.Set;
+
 public interface Browser {
 
     /**
@@ -29,6 +31,11 @@ public interface Browser {
      * Closes the browser tabs and ends the session.
      */
     void quitBrowser();
+
+    /**
+     * Closes the browser tabs and ends the session.
+     */
+    void clickOkOnAlert();
 
     /**
      * Retrieves the title of the current web page.
@@ -73,4 +80,15 @@ public interface Browser {
      * @return an instance of the `Link` class representing the located link element.
      */
     Link locateLink(LocatorType locatorType, String element);
+
+    /**
+     * Adds a set of cookies to the browser.
+     *
+     * @param cookies the set of cookies to be added.
+     */
+    void addCookies(Set<BrowserCookie> cookies);
+
+    Set<BrowserCookie> getCookies();
+
+    void clearAllCookies();
 }

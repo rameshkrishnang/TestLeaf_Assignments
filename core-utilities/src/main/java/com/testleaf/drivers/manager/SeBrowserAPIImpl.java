@@ -6,12 +6,15 @@ import com.testleaf.web.api.APIClient;
 import com.testleaf.web.api.RAAPIClientImpl;
 import com.testleaf.web.api.ResponseAPI;
 import com.testleaf.web.browser.Browser;
+import com.testleaf.web.browser.BrowserCookie;
 import com.testleaf.web.browser.BrowserFactory;
 import com.testleaf.web.browser.SeBrowserFactory;
 import com.testleaf.web.element.Button;
 import com.testleaf.web.element.Edit;
 import com.testleaf.web.element.Element;
 import com.testleaf.web.element.Link;
+
+import java.util.Set;
 
 public class SeBrowserAPIImpl implements Browser, APIClient {
 
@@ -45,6 +48,11 @@ public class SeBrowserAPIImpl implements Browser, APIClient {
     }
 
     @Override
+    public void clickOkOnAlert() {
+        browser.clickOkOnAlert();
+    }
+
+    @Override
     public String getTitle() {
         return browser.getTitle();
     }
@@ -67,6 +75,21 @@ public class SeBrowserAPIImpl implements Browser, APIClient {
     @Override
     public Link locateLink(LocatorType locatorType, String locator) {
         return browser.locateLink(locatorType, locator);
+    }
+
+    @Override
+    public void addCookies(Set<BrowserCookie> cookies) {
+        browser.addCookies(cookies);
+    }
+
+    @Override
+    public Set<BrowserCookie> getCookies() {
+        return browser.getCookies();
+    }
+
+    @Override
+    public void clearAllCookies() {
+        browser.clearAllCookies();
     }
 
     // API-specific methods

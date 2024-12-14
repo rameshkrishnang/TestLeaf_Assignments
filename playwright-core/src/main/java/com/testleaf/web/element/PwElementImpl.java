@@ -4,7 +4,7 @@ import com.microsoft.playwright.Locator;
 
 public class PwElementImpl implements Element {
 
-	protected Locator locator;
+    protected Locator locator;
 
     public PwElementImpl(Locator locator) {
         this.locator = locator;

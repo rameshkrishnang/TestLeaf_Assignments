@@ -6,7 +6,7 @@ import java.util.Map;
 
 public class PwResponseImpl implements ResponseAPI {
 
-	private final APIResponse response;
+    private final APIResponse response;
 
     public PwResponseImpl(APIResponse response) {
         this.response = response;
